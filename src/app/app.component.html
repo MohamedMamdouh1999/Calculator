@@ -1,0 +1,56 @@
+<div [ngClass]="{'bg-dark': darkMode}" class="h-100 py-5 d-flex justify-content-center align-items-center">
+  <section [ngClass]="{'bg-dark': darkMode}" class="p-3 rounded-4 shadow-lg">
+    <div  [ngClass]="{'text-white': darkMode}" class="d-flex justify-content-between align-items-center">
+      <span>11:23</span>
+      <span class="d-flex justify-content-center align-items-center">
+        <i class="fa-solid fa-signal"></i>
+        <i class="fa-solid fa-wifi px-2"></i>
+        <i class="fa-solid fa-battery-three-quarters fs-6"></i>
+      </span>
+    </div>
+    <div class="pt-5 px-2">
+      <h1 class="text-end" [ngClass]="{'text-white': darkMode}">{{result}}</h1>
+    </div>
+    <table class="table table-borderless text-center">
+      <tbody>
+        <tr>
+          <td colspan="3">
+            <mat-slide-toggle color="primary" [(ngModel)]="darkMode">
+              <span *ngIf="!darkMode">SWITCH TO DARK THEME</span>
+              <span *ngIf="darkMode" class="text-white">SWITCH TO LIGHT THEME</span>
+            </mat-slide-toggle>
+          </td>
+          <td>
+            <button (click)="getValue('*')" [ngClass]="{'text-white': darkMode}" class="bg-warning" mat-raised-button>*</button>
+          </td>
+        </tr>
+        <tr>
+          <td *ngFor="let item of [7,8,9,'/']">
+            <button (click)="getValue(item)" [ngClass]="{'bg-warning': item === '/','text-white': item === '/' && darkMode,'text-white bg-dark': darkMode && item !== '/'}" mat-raised-button>{{item}}</button>
+          </td>
+        </tr>
+        <tr>
+          <td *ngFor="let item of [4,5,6,'-']">
+            <button (click)="getValue(item)" [ngClass]="{'bg-warning': item === '-','text-white': item === '-' && darkMode,'text-white bg-dark': darkMode && item !== '-'}" mat-raised-button>{{item}}</button>
+          </td>
+        </tr>
+        <tr>
+          <td *ngFor="let item of [1,2,3,'+']">
+            <button (click)="getValue(item)" [ngClass]="{'bg-warning': item === '+','text-white': item === '+' && darkMode,'text-white bg-dark': darkMode && item !== '+'}" mat-raised-button>{{item}}</button>
+          </td>
+        </tr>
+        <tr>
+          <td *ngFor="let item of ['.',0]">
+            <button [ngClass]="{'text-white bg-dark': darkMode}" (click)="getValue(item)" mat-raised-button>{{item}}</button>
+          </td>
+          <td>
+            <button (click)="reset()" color="warn" mat-raised-button>AC</button>
+          </td>
+          <td>
+            <button (click)="equal()" color="primary" mat-raised-button>=</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
